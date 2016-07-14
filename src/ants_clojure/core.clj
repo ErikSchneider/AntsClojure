@@ -19,6 +19,7 @@
     (.fillOval context (:x ant) (:y ant) 5 5)))
 
 (defn move-ant [ant]
+  (Thread/sleep 1)
   (let [x-change (- (* 2 (rand)) 1)
         y-change (- (* 2 (rand)) 1)]
     (assoc ant 
@@ -26,7 +27,7 @@
       :y (+ (:y ant) y-change))))
 
 (defn move-ants []
-  (map move-ant @ants))
+  (pmap move-ant @ants))
 
 (def last-timestamp (atom 0))
 
